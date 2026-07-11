@@ -1,0 +1,88 @@
+/finance/expenses:
+  get:
+    operationId: listExpenses
+    tags:
+      - Expenses
+    summary: List all expenses
+    description: Returns a paginated list of all expenses.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+    responses:
+      '200':
+        description: List of expenses
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ExpenseListResponse'
+  post:
+    operationId: recordExpense
+    tags:
+      - Expenses
+    summary: Record a school expense
+    description: Records a new school operational expense.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/RecordExpenseRequest'
+    responses:
+      '201':
+        description: Expense recorded
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Expense'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/finance/expenses/{id}:
+  get:
+    operationId: getExpense
+    tags:
+      - Expenses
+    summary: Get expense details
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Expense details
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Expense'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  delete:
+    operationId: deleteExpense
+    tags:
+      - Expenses
+    summary: Delete an expense
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Expense deleted
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

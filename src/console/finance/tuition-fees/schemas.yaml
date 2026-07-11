@@ -1,0 +1,49 @@
+TuitionFee:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    level_id:
+      type: integer
+      example: 2
+    academic_year_id:
+      type: integer
+      example: 3
+    amount:
+      type: number
+      format: double
+      example: 500.00
+    name:
+      type: string
+      example: "Frais de scolarité CM1"
+
+CreateTuitionFeeRequest:
+  type: object
+  required:
+    - level_id
+    - academic_year_id
+    - amount
+    - name
+  properties:
+    level_id:
+      type: integer
+      example: 2
+    academic_year_id:
+      type: integer
+      example: 3
+    amount:
+      type: number
+      format: double
+      example: 500.00
+    name:
+      type: string
+      example: "Frais de scolarité CM1"
+
+TuitionFeeListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/TuitionFee'

@@ -1,0 +1,26 @@
+ExpenseCategory:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "Fournitures"
+
+CreateExpenseCategoryRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: "Transport"
+
+ExpenseCategoryListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/ExpenseCategory'

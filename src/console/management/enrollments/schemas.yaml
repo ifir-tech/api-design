@@ -1,0 +1,16 @@
+EnrollStudentRequest:
+  type: object
+  required:
+    - student_id
+    - academic_year_id
+    - classroom_id
+  properties:
+    student_id:
+      type: integer
+      example: 12
+    academic_year_id:
+      type: integer
+      example: 2
+    classroom_id:
+      type: integer
+      example: 5

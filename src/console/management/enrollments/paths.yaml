@@ -1,0 +1,26 @@
+/management/enrollments:
+  post:
+    operationId: enrollStudent
+    tags:
+      - Enrollments
+    summary: Enroll a student
+    description: Assigns a student to a classroom for an academic year.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/EnrollStudentRequest'
+    responses:
+      '201':
+        description: Student enrolled
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Enrollment'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

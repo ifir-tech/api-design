@@ -1,0 +1,106 @@
+/academic/levels:
+  get:
+    operationId: listLevels
+    tags:
+      - Levels
+    summary: List all levels
+    description: Returns a list of all academic levels (e.g., 6ème, 5ème...).
+    responses:
+      '200':
+        description: List of levels
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/LevelListResponse'
+  post:
+    operationId: createLevel
+    tags:
+      - Levels
+    summary: Create a level
+    description: Creates a new academic level.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateLevelRequest'
+    responses:
+      '201':
+        description: Level created
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Level'
+
+/academic/levels/{id}:
+  get:
+    operationId: getLevel
+    tags:
+      - Levels
+    summary: Get a level
+    description: Returns details of a specific level by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Level found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Level'
+      '404':
+        description: Level not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  patch:
+    operationId: updateLevel
+    tags:
+      - Levels
+    summary: Update a level
+    description: Updates an existing level.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateLevelRequest'
+    responses:
+      '200':
+        description: Level updated
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Level'
+  delete:
+    operationId: deleteLevel
+    tags:
+      - Levels
+    summary: Delete a level
+    description: Deletes a level by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Level deleted successfully
+      '404':
+        description: Level not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

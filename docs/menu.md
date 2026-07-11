@@ -1,0 +1,17 @@
+menu parfaitement rangé et détaillé :
+
+Auth (login, validate-token)
+Users (CRUD, toggle)
+Roles (CRUD)
+Permissions (CRUD, assignation aux rôles)
+Levels (CRUD)
+Classrooms (CRUD)
+Academic Years (CRUD, toggle)
+Absences (enregistrement, liste)
+Students (CRUD, toggle)
+Enrollments (inscriptions)
+Payments (enregistrement, historique)
+Expenses (CRUD)
+Tuition Fees (CRUD)
+Cash Registers (liste)
+SMS (envoi simple, envoi groupé, historique)

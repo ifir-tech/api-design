@@ -1,0 +1,32 @@
+{
+  "name": "@epc-al-anifiyat/api-design",
+  "version": "0.0.0",
+  "description": "API-first design workspace for epc-al-anifiyat with Swagger UI, Prism mocks, and spec linting",
+  "scripts": {
+    "prepare": "husky",
+    "lint:spectral": "spectral lint -r .spectral.yaml src/console/openapi.yaml",
+    "lint:redocly": "redocly lint src/console/openapi.yaml",
+    "lint:spec": "npm run lint:spectral && npm run lint:redocly"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "@redocly/cli": "^1.28.0",
+    "@stoplight/spectral-cli": "^6.11.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0"
+  },
+  "private": true,
+  "keywords": [
+    "API Design",
+    "OpenAPI",
+    "Swagger",
+    "Redocly",
+    "Swagger UI",
+    "Prism",
+    "Mock Server",
+    "API First"
+  ],
+  "author": "",
+  "license": "ISC"
+}

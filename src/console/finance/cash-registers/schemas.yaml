@@ -1,0 +1,21 @@
+CashRegister:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "Caisse principale"
+    balance:
+      type: number
+      format: double
+      example: 25000.00
+
+CashRegisterListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/CashRegister'

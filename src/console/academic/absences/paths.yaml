@@ -1,0 +1,26 @@
+/academic/absences:
+  post:
+    operationId: recordAbsence
+    tags:
+      - Absences
+    summary: Record student absence
+    description: Records an absence for a student.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/RecordAbsenceRequest'
+    responses:
+      '201':
+        description: Absence recorded
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Absence'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

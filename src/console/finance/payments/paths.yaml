@@ -1,0 +1,89 @@
+/finance/payments:
+  get:
+    operationId: listPayments
+    tags:
+      - Payments
+    summary: List all payments
+    description: Returns a paginated list of all payments.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+    responses:
+      '200':
+        description: List of payments
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/PaymentListResponse'
+  post:
+    operationId: recordPayment
+    tags:
+      - Payments
+    summary: Record a tuition payment
+    description: Records a payment made by a student.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/RecordPaymentRequest'
+    responses:
+      '201':
+        description: Payment recorded
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Payment'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/finance/payments/{id}:
+  get:
+    operationId: getPayment
+    tags:
+      - Payments
+    summary: Get payment details
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Payment details
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Payment'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/finance/students/{student_id}/payments:
+  get:
+    operationId: getStudentPayments
+    tags:
+      - Payments
+    summary: Get student payments
+    description: Retrieves all payments for a specific student.
+    parameters:
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of student payments
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/GetStudentPaymentsResponse'

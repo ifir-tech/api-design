@@ -1,0 +1,40 @@
+RecordExpenseRequest:
+  type: object
+  required:
+    - category_id
+    - title
+    - amount
+    - expense_date
+  properties:
+    category_id:
+      type: integer
+      example: 4
+    cash_register_id:
+      type: integer
+      nullable: true
+      example: 1
+    recorded_by_id:
+      type: integer
+      nullable: true
+      example: 3
+    title:
+      type: string
+      example: "Fournitures scolaires"
+    amount:
+      type: number
+      format: double
+      example: 85.50
+    expense_date:
+      type: string
+      format: date
+      example: "2026-07-11"
+
+ExpenseListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Expense'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'

@@ -1,0 +1,31 @@
+LevelListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Level'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'
+
+CreateLevelRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: "6ème"
+    description:
+      type: string
+      example: "Sixième année"
+
+UpdateLevelRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "6ème"
+    description:
+      type: string
+      example: "Sixième année"

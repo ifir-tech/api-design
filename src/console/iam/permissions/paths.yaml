@@ -1,0 +1,100 @@
+/permissions:
+  get:
+    operationId: listPermissions
+    tags:
+      - Permissions
+    summary: List all permissions
+    description: Returns a list of all permissions in the system.
+    responses:
+      '200':
+        description: List of permissions
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/PermissionListResponse'
+
+/roles/{role_id}/permissions:
+  get:
+    operationId: listRolePermissions
+    tags:
+      - Permissions
+    summary: List permissions of a role
+    description: Returns all permissions assigned to a specific role.
+    parameters:
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of role permissions
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/PermissionListResponse'
+      '404':
+        description: Role not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  post:
+    operationId: addRolePermission
+    tags:
+      - Permissions
+    summary: Add permission to role
+    description: Assigns a permission to a role.
+    parameters:
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/AddRolePermissionRequest'
+    responses:
+      '201':
+        description: Permission added to role
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/Permission'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/roles/{role_id}/permissions/{permission_id}:
+  delete:
+    operationId: removeRolePermission
+    tags:
+      - Permissions
+    summary: Remove permission from role
+    description: Removes a permission from a role.
+    parameters:
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: permission_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Permission removed from role
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

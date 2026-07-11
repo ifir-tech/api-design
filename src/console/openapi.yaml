@@ -1,0 +1,239 @@
+openapi: 3.0.3
+
+info:
+  title: EPC Al Anifiyat Console API
+  version: 1.0.0
+  description: API for school administration and operations, aligned with gRPC modules.
+  contact:
+    name: Administrator
+    email: admin@epc-al-anifiyat.com
+
+servers:
+  - url: http://localhost:4010
+    description: Prism Mock Server
+  - url: http://localhost:3000/v1
+    description: Development
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Auth
+    description: Authentication operations
+  - name: Users
+    description: User management
+  - name: Roles
+    description: Role management
+  - name: Permissions
+    description: Permission management
+  - name: Levels
+    description: Academic levels management
+  - name: Classrooms
+    description: Classrooms management
+  - name: Academic Years
+    description: Academic years management
+  - name: Absences
+    description: Student absences management
+  - name: Students
+    description: Student administration
+  - name: Enrollments
+    description: Student enrollments
+  - name: Payments
+    description: Tuition payments
+  - name: Expenses
+    description: School expenses
+  - name: Tuition Fees
+    description: Tuition fees configuration
+  - name: Cash Registers
+    description: Cash registers management
+  - name: SMS
+    description: SMS Notifications
+
+paths:
+  # IAM Module
+  /auth/login:
+    $ref: './iam/auth/paths.yaml#/~1auth~1login'
+  /auth/validate-token:
+    $ref: './iam/auth/paths.yaml#/~1auth~1validate-token'
+  /auth/logout:
+    $ref: './iam/auth/paths.yaml#/~1auth~1logout'
+  /auth/update-password:
+    $ref: './iam/auth/paths.yaml#/~1auth~1update-password'
+  /auth/forgot-password:
+    $ref: './iam/auth/paths.yaml#/~1auth~1forgot-password'
+  /auth/reset-password:
+    $ref: './iam/auth/paths.yaml#/~1auth~1reset-password'
+  /users:
+    $ref: './iam/users/paths.yaml#/~1users'
+  /users/{id}:
+    $ref: './iam/users/paths.yaml#/~1users~1{id}'
+  /users/{id}/toggle:
+    $ref: './iam/users/paths.yaml#/~1users~1{id}~1toggle'
+  /roles:
+    $ref: './iam/roles/paths.yaml#/~1roles'
+  /roles/{id}:
+    $ref: './iam/roles/paths.yaml#/~1roles~1{id}'
+  /permissions:
+    $ref: './iam/permissions/paths.yaml#/~1permissions'
+  /roles/{role_id}/permissions:
+    $ref: './iam/permissions/paths.yaml#/~1roles~1{role_id}~1permissions'
+  /roles/{role_id}/permissions/{permission_id}:
+    $ref: './iam/permissions/paths.yaml#/~1roles~1{role_id}~1permissions~1{permission_id}'
+
+  # Academic Module - Levels
+  /academic/levels:
+    $ref: './academic/levels/paths.yaml#/~1academic~1levels'
+  /academic/levels/{id}:
+    $ref: './academic/levels/paths.yaml#/~1academic~1levels~1{id}'
+
+  # Academic Module - Classrooms
+  /academic/classrooms:
+    $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms'
+  /academic/classrooms/{id}:
+    $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms~1{id}'
+
+  # Academic Module - Academic Years
+  /academic/years:
+    $ref: './academic/years/paths.yaml#/~1academic~1years'
+  /academic/years/{id}:
+    $ref: './academic/years/paths.yaml#/~1academic~1years~1{id}'
+  /academic/years/{id}/toggle:
+    $ref: './academic/years/paths.yaml#/~1academic~1years~1{id}~1toggle'
+
+  # Academic Module - Absences
+  /academic/absences:
+    $ref: './academic/absences/paths.yaml#/~1academic~1absences'
+
+  # Management Module
+  /management/students:
+    $ref: './management/students/paths.yaml#/~1management~1students'
+  /management/students/{id}:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{id}'
+  /management/students/{id}/toggle:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{id}~1toggle'
+  /management/students/{student_id}/absences:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1absences'
+  /management/students/{student_id}/absences/{absence_id}:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1absences~1{absence_id}'
+  /management/enrollments:
+    $ref: './management/enrollments/paths.yaml#/~1management~1enrollments'
+  /management/students/{student_id}/payments:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1payments'
+
+  # Finance Module
+  /finance/payments:
+    $ref: './finance/payments/paths.yaml#/~1finance~1payments'
+  /finance/payments/{id}:
+    $ref: './finance/payments/paths.yaml#/~1finance~1payments~1{id}'
+  /finance/students/{student_id}/payments:
+    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{student_id}~1payments'
+  /finance/expenses:
+    $ref: './finance/expenses/paths.yaml#/~1finance~1expenses'
+  /finance/expenses/{id}:
+    $ref: './finance/expenses/paths.yaml#/~1finance~1expenses~1{id}'
+  /finance/expense-categories:
+    $ref: './finance/expense-categories/paths.yaml#/~1finance~1expense-categories'
+  /finance/tuition-fees:
+    $ref: './finance/tuition-fees/paths.yaml#/~1finance~1tuition-fees'
+  /finance/cash-registers:
+    $ref: './finance/cash-registers/paths.yaml#/~1finance~1cash-registers'
+
+  # Notification Module
+  /notifications/sms:
+    $ref: './notification/sms/paths.yaml#/~1notifications~1sms'
+  /notifications/sms/history:
+    $ref: './notification/sms/paths.yaml#/~1notifications~1sms~1history'
+  /notifications/sms/bulk:
+    $ref: './notification/sms/paths.yaml#/~1notifications~1sms~1bulk'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # Re-exported from common schemas
+    User:
+      $ref: '../common/schemas.yaml#/User'
+    Classroom:
+      $ref: '../common/schemas.yaml#/Classroom'
+    Absence:
+      $ref: '../common/schemas.yaml#/Absence'
+    Student:
+      $ref: '../common/schemas.yaml#/Student'
+    Enrollment:
+      $ref: '../common/schemas.yaml#/Enrollment'
+    Payment:
+      $ref: '../common/schemas.yaml#/Payment'
+    Expense:
+      $ref: '../common/schemas.yaml#/Expense'
+    ErrorResponse:
+      $ref: '../common/schemas.yaml#/ErrorResponse'
+
+    # IAM Schemas
+    LoginRequest:
+      $ref: './iam/auth/schemas.yaml#/LoginRequest'
+    LoginResponse:
+      $ref: './iam/auth/schemas.yaml#/LoginResponse'
+    ValidateTokenRequest:
+      $ref: './iam/auth/schemas.yaml#/ValidateTokenRequest'
+    ValidateTokenResponse:
+      $ref: './iam/auth/schemas.yaml#/ValidateTokenResponse'
+    UpdatePasswordRequest:
+      $ref: './iam/auth/schemas.yaml#/UpdatePasswordRequest'
+    ForgotPasswordRequest:
+      $ref: './iam/auth/schemas.yaml#/ForgotPasswordRequest'
+    ResetPasswordRequest:
+      $ref: './iam/auth/schemas.yaml#/ResetPasswordRequest'
+    GenericSuccessResponse:
+      $ref: './iam/auth/schemas.yaml#/GenericSuccessResponse'
+    CreateUserRequest:
+      $ref: './iam/users/schemas.yaml#/CreateUserRequest'
+
+    # Academic Schemas
+    Level:
+      $ref: '../common/schemas.yaml#/Level'
+    AcademicYear:
+      $ref: '../common/schemas.yaml#/AcademicYear'
+    LevelListResponse:
+      $ref: './academic/levels/schemas.yaml#/LevelListResponse'
+    CreateLevelRequest:
+      $ref: './academic/levels/schemas.yaml#/CreateLevelRequest'
+    UpdateLevelRequest:
+      $ref: './academic/levels/schemas.yaml#/UpdateLevelRequest'
+    ClassroomListResponse:
+      $ref: './academic/classrooms/schemas.yaml#/ClassroomListResponse'
+    CreateClassroomRequest:
+      $ref: './academic/classrooms/schemas.yaml#/CreateClassroomRequest'
+    UpdateClassroomRequest:
+      $ref: './academic/classrooms/schemas.yaml#/UpdateClassroomRequest'
+    AcademicYearListResponse:
+      $ref: './academic/years/schemas.yaml#/AcademicYearListResponse'
+    CreateAcademicYearRequest:
+      $ref: './academic/years/schemas.yaml#/CreateAcademicYearRequest'
+    UpdateAcademicYearRequest:
+      $ref: './academic/years/schemas.yaml#/UpdateAcademicYearRequest'
+    RecordAbsenceRequest:
+      $ref: './academic/absences/schemas.yaml#/RecordAbsenceRequest'
+
+    # Management Schemas
+    RegisterStudentRequest:
+      $ref: './management/students/schemas.yaml#/RegisterStudentRequest'
+    EnrollStudentRequest:
+      $ref: './management/enrollments/schemas.yaml#/EnrollStudentRequest'
+
+    # Finance Schemas
+    RecordPaymentRequest:
+      $ref: './finance/payments/schemas.yaml#/RecordPaymentRequest'
+    GetStudentPaymentsResponse:
+      $ref: './finance/payments/schemas.yaml#/GetStudentPaymentsResponse'
+    RecordExpenseRequest:
+      $ref: './finance/expenses/schemas.yaml#/RecordExpenseRequest'
+
+    # Notification Schemas
+    SendSmsRequest:
+      $ref: './notification/sms/schemas.yaml#/SendSmsRequest'
+    SendSmsResponse:
+      $ref: './notification/sms/schemas.yaml#/SendSmsResponse'

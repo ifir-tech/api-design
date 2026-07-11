@@ -1,0 +1,17 @@
+RecordAbsenceRequest:
+  type: object
+  required:
+    - student_id
+    - date
+    - reason
+  properties:
+    student_id:
+      type: integer
+      example: 12
+    date:
+      type: string
+      format: date
+      example: "2026-07-11"
+    reason:
+      type: string
+      example: "Maladie"

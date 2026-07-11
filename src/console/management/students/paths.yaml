@@ -1,0 +1,182 @@
+/management/students:
+  get:
+    operationId: listStudents
+    tags:
+      - Students
+    summary: List all students
+    description: Returns a paginated list of students.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+    responses:
+      '200':
+        description: List of students
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../../../common/schemas.yaml#/Student'
+                meta:
+                  $ref: '../../../common/schemas.yaml#/PaginationMeta'
+  post:
+    operationId: registerStudent
+    tags:
+      - Students
+    summary: Register a new student
+    description: Registers a student in the system (creates profile).
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/RegisterStudentRequest'
+    responses:
+      '201':
+        description: Student registered
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Student'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/management/students/{id}:
+  get:
+    operationId: getStudent
+    tags:
+      - Students
+    summary: Get student details
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Student details
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Student'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/management/students/{id}/toggle:
+  post:
+    operationId: toggleStudentStatus
+    tags:
+      - Students
+    summary: Toggle student active status
+    description: Activates or deactivates a student profile.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Student status toggled
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Student'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/management/students/{student_id}/absences:
+  get:
+    operationId: getStudentAbsences
+    tags:
+      - Absences
+    summary: Get student absences
+    description: Retrieves all recorded absences for a student.
+    parameters:
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of absences
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../../../common/schemas.yaml#/Absence'
+
+/management/students/{student_id}/absences/{absence_id}:
+  delete:
+    operationId: deleteAbsence
+    tags:
+      - Absences
+    summary: Delete student absence
+    description: Removes an absence record.
+    parameters:
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: absence_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Absence deleted
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/management/students/{student_id}/payments:
+  get:
+    operationId: getStudentPaymentsHistory
+    tags:
+      - Payments
+    summary: Get student payments history
+    description: Retrieves payment history for a student from Management context.
+    parameters:
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of payments
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payments:
+                  type: array
+                  items:
+                    $ref: '../../../common/schemas.yaml#/Payment'

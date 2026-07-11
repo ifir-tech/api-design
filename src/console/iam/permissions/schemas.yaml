@@ -1,0 +1,36 @@
+Permission:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    role_id:
+      type: integer
+      example: 1
+    resource:
+      type: string
+      example: "students"
+    actions:
+      type: string
+      example: "create,read,update,delete"
+
+PermissionListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Permission'
+
+AddRolePermissionRequest:
+  type: object
+  required:
+    - resource
+    - actions
+  properties:
+    resource:
+      type: string
+      example: "students"
+    actions:
+      type: string
+      example: "create,read,update"

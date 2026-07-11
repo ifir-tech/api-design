@@ -1,0 +1,133 @@
+/users:
+  get:
+    operationId: listUsers
+    tags:
+      - Users
+    summary: List users
+    description: Returns a paginated list of users.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: search
+        in: query
+        required: false
+        description: Search by name or email
+        schema:
+          type: string
+    responses:
+      '200':
+        description: List of users
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/UserListResponse'
+  post:
+    operationId: createUser
+    tags:
+      - Users
+    summary: Create a user
+    description: Creates a new user record.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateUserRequest'
+    responses:
+      '201':
+        description: User created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/User'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/users/{id}:
+  get:
+    operationId: getUser
+    tags:
+      - Users
+    summary: Get user details
+    description: Retrieves a user's details by their ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: User details retrieved
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/User'
+      '404':
+        description: User not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  patch:
+    operationId: updateUser
+    tags:
+      - Users
+    summary: Update a user
+    description: Updates user information.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateUserRequest'
+    responses:
+      '200':
+        description: User updated
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/User'
+      '404':
+        description: User not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/users/{id}/toggle:
+  post:
+    operationId: toggleUserStatus
+    tags:
+      - Users
+    summary: Toggle user active status
+    description: Activates or deactivates a user account.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: User status toggled
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/User'
+      '404':
+        description: User not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

@@ -1,0 +1,42 @@
+Role:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "ADMIN"
+    description:
+      type: string
+      example: "Full access administrator"
+
+CreateRoleRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: "TEACHER"
+    description:
+      type: string
+      example: "Teacher with limited access"
+
+UpdateRoleRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "TEACHER"
+    description:
+      type: string
+      example: "Updated description"
+
+RoleListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Role'

@@ -1,0 +1,135 @@
+/academic/years:
+  get:
+    operationId: listAcademicYears
+    tags:
+      - Academic Years
+    summary: List academic years
+    description: Returns a list of all academic years.
+    responses:
+      '200':
+        description: List of academic years
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/AcademicYearListResponse'
+  post:
+    operationId: createAcademicYear
+    tags:
+      - Academic Years
+    summary: Create an academic year
+    description: Creates a new academic year.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateAcademicYearRequest'
+    responses:
+      '201':
+        description: Academic year created
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/AcademicYear'
+
+/academic/years/{id}:
+  get:
+    operationId: getAcademicYear
+    tags:
+      - Academic Years
+    summary: Get an academic year
+    description: Returns details of a specific academic year by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Academic year found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/AcademicYear'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  patch:
+    operationId: updateAcademicYear
+    tags:
+      - Academic Years
+    summary: Update an academic year
+    description: Updates an existing academic year.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateAcademicYearRequest'
+    responses:
+      '200':
+        description: Academic year updated
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/AcademicYear'
+  delete:
+    operationId: deleteAcademicYear
+    tags:
+      - Academic Years
+    summary: Delete an academic year
+    description: Deletes an academic year by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Academic year deleted successfully
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/academic/years/{id}/toggle:
+  post:
+    operationId: toggleAcademicYear
+    tags:
+      - Academic Years
+    summary: Toggle academic year active status
+    description: |
+      Activates or deactivates an academic year.
+      When activated, it becomes the current active year.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Academic year status toggled
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/AcademicYear'
+      '404':
+        description: Not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

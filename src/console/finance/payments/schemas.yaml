@@ -1,0 +1,56 @@
+RecordPaymentRequest:
+  type: object
+  required:
+    - student_id
+    - tuition_fee_id
+    - amount
+    - payment_method
+    - receipt_number
+    - payment_date
+  properties:
+    student_id:
+      type: integer
+      example: 12
+    tuition_fee_id:
+      type: integer
+      example: 2
+    cash_register_id:
+      type: integer
+      nullable: true
+      example: 1
+    recorded_by_id:
+      type: integer
+      nullable: true
+      example: 3
+    amount:
+      type: number
+      format: double
+      example: 150.00
+    payment_method:
+      type: string
+      example: "CASH"
+    receipt_number:
+      type: string
+      example: "REC-2026-0001"
+    payment_date:
+      type: string
+      format: date
+      example: "2026-07-11"
+
+GetStudentPaymentsResponse:
+  type: object
+  properties:
+    payments:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Payment'
+
+PaymentListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Payment'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'

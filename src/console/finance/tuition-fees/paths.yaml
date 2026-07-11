@@ -1,0 +1,32 @@
+/finance/tuition-fees:
+  get:
+    operationId: listTuitionFees
+    tags:
+      - Tuition Fees
+    summary: List tuition fees
+    description: Returns tuition fee configurations.
+    responses:
+      '200':
+        description: List of tuition fees
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TuitionFeeListResponse'
+  post:
+    operationId: createTuitionFee
+    tags:
+      - Tuition Fees
+    summary: Create a tuition fee
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateTuitionFeeRequest'
+    responses:
+      '201':
+        description: Tuition fee created
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TuitionFee'

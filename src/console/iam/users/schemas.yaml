@@ -1,0 +1,52 @@
+CreateUserRequest:
+  type: object
+  required:
+    - role_id
+    - email
+    - password
+    - first_name
+    - last_name
+  properties:
+    role_id:
+      type: integer
+      example: 2
+    email:
+      type: string
+      format: email
+      example: "new.user@example.com"
+    password:
+      type: string
+      format: password
+      example: "securePass456"
+    first_name:
+      type: string
+      example: "John"
+    last_name:
+      type: string
+      example: "Smith"
+
+UpdateUserRequest:
+  type: object
+  properties:
+    role_id:
+      type: integer
+      example: 2
+    email:
+      type: string
+      format: email
+    first_name:
+      type: string
+      example: "John"
+    last_name:
+      type: string
+      example: "Smith"
+
+UserListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/User'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'

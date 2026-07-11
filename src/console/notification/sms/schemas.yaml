@@ -1,0 +1,84 @@
+SendSmsRequest:
+  type: object
+  required:
+    - student_id
+    - message
+  properties:
+    student_id:
+      type: integer
+      example: 12
+    message:
+      type: string
+      example: "Votre enfant était absent aujourd'hui."
+
+SendSmsResponse:
+  type: object
+  properties:
+    success:
+      type: boolean
+      example: true
+    status:
+      type: string
+      example: "SENT"
+
+SendBulkSmsRequest:
+  type: object
+  required:
+    - message
+  properties:
+    student_ids:
+      type: array
+      items:
+        type: integer
+      example: [1, 2, 3]
+    classroom_id:
+      type: integer
+      nullable: true
+      example: 5
+      description: Send to all students of a classroom (alternative to student_ids)
+    message:
+      type: string
+      example: "Réunion des parents le 15/07/2026."
+
+SendBulkSmsResponse:
+  type: object
+  properties:
+    total_sent:
+      type: integer
+      example: 25
+    total_failed:
+      type: integer
+      example: 2
+    status:
+      type: string
+      example: "PARTIAL"
+
+SmsHistoryItem:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    student_id:
+      type: integer
+      example: 12
+    message:
+      type: string
+      example: "Votre enfant était absent aujourd'hui."
+    status:
+      type: string
+      example: "SENT"
+    sent_at:
+      type: string
+      format: date-time
+      example: "2026-07-11T10:00:00Z"
+
+SmsHistoryResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/SmsHistoryItem'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'

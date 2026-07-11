@@ -1,0 +1,77 @@
+/notifications/sms:
+  post:
+    operationId: sendSms
+    tags:
+      - SMS
+    summary: Send SMS notification
+    description: Sends an SMS message to a student or their guardian.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/SendSmsRequest'
+    responses:
+      '200':
+        description: SMS sent
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SendSmsResponse'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/notifications/sms/history:
+  get:
+    operationId: listSmsHistory
+    tags:
+      - SMS
+    summary: List SMS history
+    description: Returns history of sent SMS notifications.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: student_id
+        in: query
+        required: false
+        description: Filter by student ID
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: SMS history
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SmsHistoryResponse'
+
+/notifications/sms/bulk:
+  post:
+    operationId: sendBulkSms
+    tags:
+      - SMS
+    summary: Send bulk SMS
+    description: Sends SMS to multiple students or a classroom.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/SendBulkSmsRequest'
+    responses:
+      '200':
+        description: Bulk SMS sent
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SendBulkSmsResponse'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

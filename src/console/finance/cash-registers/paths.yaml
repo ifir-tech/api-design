@@ -1,0 +1,13 @@
+/finance/cash-registers:
+  get:
+    operationId: listCashRegisters
+    tags:
+      - Cash Registers
+    summary: List cash registers
+    responses:
+      '200':
+        description: List of cash registers
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/CashRegisterListResponse'

@@ -1,0 +1,33 @@
+RegisterStudentRequest:
+  type: object
+  required:
+    - first_name
+    - last_name
+    - date_of_birth
+    - gender
+    - parent_name
+    - parent_phone
+  properties:
+    first_name:
+      type: string
+      example: "Alice"
+    last_name:
+      type: string
+      example: "Dupont"
+    date_of_birth:
+      type: string
+      format: date
+      example: "2015-05-14"
+    gender:
+      type: string
+      example: "F"
+    parent_name:
+      type: string
+      example: "Jean Dupont"
+    parent_phone:
+      type: string
+      example: "+33612345678"
+    parent_email:
+      type: string
+      format: email
+      example: "jean.dupont@example.com"

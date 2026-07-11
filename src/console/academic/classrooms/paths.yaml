@@ -1,0 +1,113 @@
+/academic/classrooms:
+  get:
+    operationId: listClassrooms
+    tags:
+      - Classrooms
+    summary: List classrooms
+    description: Returns a list of classrooms, optionally filtered by level.
+    parameters:
+      - name: level_id
+        in: query
+        required: false
+        description: Filter by level ID
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of classrooms
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ClassroomListResponse'
+  post:
+    operationId: createClassroom
+    tags:
+      - Classrooms
+    summary: Create a classroom
+    description: Creates a new classroom.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateClassroomRequest'
+    responses:
+      '201':
+        description: Classroom created
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Classroom'
+
+/academic/classrooms/{id}:
+  get:
+    operationId: getClassroom
+    tags:
+      - Classrooms
+    summary: Get a classroom
+    description: Returns details of a specific classroom by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Classroom found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Classroom'
+      '404':
+        description: Classroom not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  patch:
+    operationId: updateClassroom
+    tags:
+      - Classrooms
+    summary: Update a classroom
+    description: Updates an existing classroom.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateClassroomRequest'
+    responses:
+      '200':
+        description: Classroom updated
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/Classroom'
+  delete:
+    operationId: deleteClassroom
+    tags:
+      - Classrooms
+    summary: Delete a classroom
+    description: Deletes a classroom by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Classroom deleted successfully
+      '404':
+        description: Classroom not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

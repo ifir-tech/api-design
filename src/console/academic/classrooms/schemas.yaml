@@ -1,0 +1,39 @@
+ClassroomListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Classroom'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'
+
+CreateClassroomRequest:
+  type: object
+  required:
+    - name
+    - level_id
+    - capacity
+  properties:
+    name:
+      type: string
+      example: "6ème A"
+    level_id:
+      type: integer
+      example: 1
+    capacity:
+      type: integer
+      example: 30
+
+UpdateClassroomRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "6ème A"
+    level_id:
+      type: integer
+      example: 1
+    capacity:
+      type: integer
+      example: 30

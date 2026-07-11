@@ -1,0 +1,41 @@
+AcademicYearListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/AcademicYear'
+
+CreateAcademicYearRequest:
+  type: object
+  required:
+    - name
+    - start_date
+    - end_date
+  properties:
+    name:
+      type: string
+      example: "2026-2027"
+    start_date:
+      type: string
+      format: date
+      example: "2026-09-01"
+    end_date:
+      type: string
+      format: date
+      example: "2027-06-30"
+
+UpdateAcademicYearRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "2026-2027"
+    start_date:
+      type: string
+      format: date
+      example: "2026-09-01"
+    end_date:
+      type: string
+      format: date
+      example: "2027-06-30"

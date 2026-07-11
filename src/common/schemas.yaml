@@ -1,0 +1,243 @@
+ErrorResponse:
+  type: object
+  properties:
+    statusCode:
+      type: integer
+      example: 400
+    message:
+      type: string
+      example: "Bad Request"
+    error:
+      type: string
+      example: "Validation Error"
+
+PaginationMeta:
+  type: object
+  properties:
+    totalItems:
+      type: integer
+      example: 100
+    itemCount:
+      type: integer
+      example: 10
+    itemsPerPage:
+      type: integer
+      example: 10
+    totalPages:
+      type: integer
+      example: 10
+    currentPage:
+      type: integer
+      example: 1
+
+User:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    role_id:
+      type: integer
+      example: 2
+    email:
+      type: string
+      format: email
+      example: "user@example.com"
+    first_name:
+      type: string
+      example: "John"
+    last_name:
+      type: string
+      example: "Doe"
+    is_active:
+      type: boolean
+      example: true
+
+Level:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "6ème"
+    order:
+      type: integer
+      example: 1
+
+AcademicYear:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "2026-2027"
+    startDate:
+      type: string
+      format: date
+      example: "2026-09-01"
+    endDate:
+      type: string
+      format: date
+      example: "2027-06-30"
+    isActive:
+      type: boolean
+      example: true
+
+Classroom:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    level_id:
+      type: integer
+      example: 2
+    name:
+      type: string
+      example: "CM1-A"
+    capacity:
+      type: integer
+      example: 30
+
+Absence:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    student_id:
+      type: integer
+      example: 12
+    academic_year_id:
+      type: integer
+      example: 3
+    date:
+      type: string
+      format: date
+      example: "2026-07-11"
+    reason:
+      type: string
+      example: "Sick"
+    justified:
+      type: boolean
+      example: true
+
+Student:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    guardian_id:
+      type: integer
+      example: 5
+    matricule:
+      type: string
+      example: "STD2026001"
+    first_name:
+      type: string
+      example: "Jane"
+    last_name:
+      type: string
+      example: "Smith"
+    birth_date:
+      type: string
+      format: date
+      example: "2015-05-15"
+    gender:
+      type: string
+      example: "FEMALE"
+
+Enrollment:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    student_id:
+      type: integer
+      example: 1
+    classroom_id:
+      type: integer
+      example: 2
+    academic_year_id:
+      type: integer
+      example: 3
+    stream:
+      type: string
+      example: "GENERAL"
+    status:
+      type: string
+      example: "ACTIVE"
+    enrolled_at:
+      type: string
+      format: date-time
+      example: "2026-07-11T08:00:00Z"
+
+Payment:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    student_id:
+      type: integer
+      example: 12
+    tuition_fee_id:
+      type: integer
+      example: 2
+    cash_register_id:
+      type: integer
+      example: 1
+      nullable: true
+    recorded_by_id:
+      type: integer
+      example: 3
+      nullable: true
+    amount:
+      type: number
+      format: double
+      example: 150.00
+    payment_method:
+      type: string
+      example: "CASH"
+    receipt_number:
+      type: string
+      example: "REC-2026-0001"
+    payment_date:
+      type: string
+      format: date
+      example: "2026-07-11"
+
+Expense:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    category_id:
+      type: integer
+      example: 4
+    cash_register_id:
+      type: integer
+      example: 1
+      nullable: true
+    recorded_by_id:
+      type: integer
+      example: 3
+      nullable: true
+    title:
+      type: string
+      example: "School supplies"
+    amount:
+      type: number
+      format: double
+      example: 85.50
+    expense_date:
+      type: string
+      format: date
+      example: "2026-07-11"
