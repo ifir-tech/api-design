@@ -26,6 +26,35 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
+/auth/refresh-token:
+  post:
+    operationId: refreshToken
+    tags:
+      - Auth
+    summary: Refresh session token
+    description: Uses a refresh token to obtain a new access token.
+    security: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/RefreshTokenRequest'
+    responses:
+      '200':
+        description: Tokens successfully refreshed
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/RefreshTokenResponse'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+
 /auth/validate-token:
   post:
     operationId: validateToken

@@ -19,8 +19,30 @@ LoginResponse:
     access_token:
       type: string
       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    refresh_token:
+      type: string
+      example: "def456..."
     user:
       $ref: '../../../common/schemas.yaml#/User'
+
+RefreshTokenRequest:
+  type: object
+  required:
+    - refresh_token
+  properties:
+    refresh_token:
+      type: string
+      example: "def456..."
+
+RefreshTokenResponse:
+  type: object
+  properties:
+    access_token:
+      type: string
+      example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    refresh_token:
+      type: string
+      example: "def456..."
 
 ValidateTokenRequest:
   type: object
