@@ -8,6 +8,20 @@
     parameters:
       - $ref: '../../../common/parameters.yaml#/PaginationLimit'
       - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: start_date
+        in: query
+        required: false
+        description: Filter payments after or on this date
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: false
+        description: Filter payments before or on this date
+        schema:
+          type: string
+          format: date
     responses:
       '200':
         description: List of payments
@@ -21,6 +35,14 @@
       - Payments
     summary: Record a tuition payment
     description: Records a payment made by a student.
+    parameters:
+      - name: Idempotency-Key
+        in: header
+        required: false
+        description: Unique key to prevent double charging
+        schema:
+          type: string
+          format: uuid
     requestBody:
       required: true
       content:
@@ -87,3 +109,64 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/GetStudentPaymentsResponse'
+
+/finance/students/{student_id}/balance:
+  get:
+    operationId: getStudentBalance
+    tags:
+      - Payments
+    summary: Get student tuition balance details
+    description: Returns total amount due, amount paid, remaining balance, and status.
+    parameters:
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Student balance details
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/StudentBalanceResponse'
+      '404':
+        description: Student not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/finance/students/balances:
+  get:
+    operationId: listStudentsBalances
+    tags:
+      - Payments
+    summary: List student balances
+    description: Returns a list of student balances filtered by classroom, year, and status.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: classroom_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: academic_year_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: payment_status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [PAID, PARTIAL, UNPAID, OVERDUE]
+    responses:
+      '200':
+        description: Paginated list of student balances
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/StudentBalancesListResponse'

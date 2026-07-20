@@ -1,4 +1,45 @@
 /management/enrollments:
+  get:
+    operationId: listEnrollments
+    tags:
+      - Enrollments
+    summary: List all enrollments
+    description: Returns a paginated list of enrollments, with optional filters.
+    parameters:
+      - $ref: '../../../common/parameters.yaml#/PaginationLimit'
+      - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: classroom_id
+        in: query
+        required: false
+        description: Filter by classroom ID
+        schema:
+          type: integer
+      - name: academic_year_id
+        in: query
+        required: false
+        description: Filter by academic year ID
+        schema:
+          type: integer
+      - name: student_id
+        in: query
+        required: false
+        description: Filter by student ID
+        schema:
+          type: integer
+      - name: section
+        in: query
+        required: false
+        description: Filter by section (FR or AR)
+        schema:
+          type: string
+          enum: [FR, AR]
+    responses:
+      '200':
+        description: List of enrollments
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/EnrollmentListResponse'
   post:
     operationId: enrollStudent
     tags:

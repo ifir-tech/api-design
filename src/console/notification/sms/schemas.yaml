@@ -82,3 +82,51 @@ SmsHistoryResponse:
         $ref: '#/SmsHistoryItem'
     meta:
       $ref: '../../../common/schemas.yaml#/PaginationMeta'
+
+SmsTemplate:
+  type: object
+  required:
+    - id
+    - name
+    - content
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "Absence notification"
+    content:
+      type: string
+      example: "Dear parent, your child {student_name} was absent on {date}."
+
+CreateSmsTemplateRequest:
+  type: object
+  required:
+    - name
+    - content
+  properties:
+    name:
+      type: string
+      example: "Absence notification"
+    content:
+      type: string
+      example: "Dear parent, your child {student_name} was absent on {date}."
+
+UpdateSmsTemplateRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "Absence notification"
+    content:
+      type: string
+      example: "Dear parent, your child {student_name} was absent on {date}."
+
+SmsTemplateListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/SmsTemplate'

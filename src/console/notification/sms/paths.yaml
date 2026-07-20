@@ -75,3 +75,97 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/notifications/sms-templates:
+  get:
+    operationId: listSmsTemplates
+    tags:
+      - SMS
+    summary: List all SMS templates
+    description: Returns a list of all SMS templates with their placeholder variables.
+    responses:
+      '200':
+        description: List of SMS templates
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SmsTemplateListResponse'
+  post:
+    operationId: createSmsTemplate
+    tags:
+      - SMS
+    summary: Create an SMS template
+    description: Creates a new reusable SMS template.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateSmsTemplateRequest'
+    responses:
+      '201':
+        description: SMS template created
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SmsTemplate'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/notifications/sms-templates/{id}:
+  patch:
+    operationId: updateSmsTemplate
+    tags:
+      - SMS
+    summary: Update an SMS template
+    description: Updates an existing SMS template.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateSmsTemplateRequest'
+    responses:
+      '200':
+        description: SMS template updated
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/SmsTemplate'
+      '404':
+        description: SMS template not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+  delete:
+    operationId: deleteSmsTemplate
+    tags:
+      - SMS
+    summary: Delete an SMS template
+    description: Deletes an SMS template by ID.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: SMS template deleted successfully
+      '404':
+        description: SMS template not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'

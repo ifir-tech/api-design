@@ -1,0 +1,51 @@
+DashboardStatisticsResponse:
+  type: object
+  properties:
+    total_students:
+      type: integer
+      example: 250
+    monthly_registrations:
+      type: integer
+      example: 15
+    pending_payments_count:
+      type: integer
+      example: 32
+    section_breakdown:
+      type: object
+      properties:
+        french:
+          type: integer
+          example: 150
+        arabic:
+          type: integer
+          example: 100
+    registration_history:
+      type: array
+      items:
+        type: object
+        properties:
+          month:
+            type: string
+            example: "2026-09"
+          count:
+            type: integer
+            example: 120
+    age_pyramid:
+      type: array
+      items:
+        type: object
+        properties:
+          age:
+            type: integer
+            example: 6
+          gender:
+            type: string
+            enum: [MALE, FEMALE]
+            example: "MALE"
+          count:
+            type: integer
+            example: 18
+    recovery_rate:
+      type: number
+      format: double
+      example: 85.5

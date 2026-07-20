@@ -8,6 +8,31 @@
     parameters:
       - $ref: '../../../common/parameters.yaml#/PaginationLimit'
       - $ref: '../../../common/parameters.yaml#/PaginationPage'
+      - name: search
+        in: query
+        required: false
+        description: Search by name, first name or matricule
+        schema:
+          type: string
+      - name: classroom_id
+        in: query
+        required: false
+        description: Filter by classroom ID
+        schema:
+          type: integer
+      - name: level_id
+        in: query
+        required: false
+        description: Filter by level ID
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        description: Filter by active status
+        schema:
+          type: string
+          enum: [ACTIVE, INACTIVE]
     responses:
       '200':
         description: List of students

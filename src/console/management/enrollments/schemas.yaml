@@ -14,3 +14,13 @@ EnrollStudentRequest:
     classroom_id:
       type: integer
       example: 5
+
+EnrollmentListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../../../common/schemas.yaml#/Enrollment'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'

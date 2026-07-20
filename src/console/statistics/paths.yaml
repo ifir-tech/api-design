@@ -1,0 +1,14 @@
+/statistics/dashboard:
+  get:
+    operationId: getDashboardStatistics
+    tags:
+      - Statistics
+    summary: Get dashboard statistics
+    description: Returns aggregated KPIs for the administrative dashboard (e.g. totals, payment status, section statistics).
+    responses:
+      '200':
+        description: Dashboard statistics
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/DashboardStatisticsResponse'

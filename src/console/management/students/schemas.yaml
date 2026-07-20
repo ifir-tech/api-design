@@ -5,8 +5,11 @@ RegisterStudentRequest:
     - last_name
     - date_of_birth
     - gender
-    - parent_name
-    - parent_phone
+    - father_name
+    - father_phone
+    - mother_name
+    - mother_phone
+    - birth_place
   properties:
     first_name:
       type: string
@@ -20,14 +23,25 @@ RegisterStudentRequest:
       example: "2015-05-14"
     gender:
       type: string
-      example: "F"
-    parent_name:
+      enum: [MALE, FEMALE]
+      example: "FEMALE"
+    father_name:
       type: string
       example: "Jean Dupont"
-    parent_phone:
+    father_phone:
       type: string
-      example: "+33612345678"
-    parent_email:
+      example: "+221771234567"
+    mother_name:
       type: string
-      format: email
-      example: "jean.dupont@example.com"
+      example: "Marie Dupont"
+    mother_phone:
+      type: string
+      example: "+221777654321"
+    birth_place:
+      type: string
+      example: "Dakar"
+    photo:
+      type: string
+      format: uri
+      nullable: true
+      example: "https://example.com/photos/alice.jpg"

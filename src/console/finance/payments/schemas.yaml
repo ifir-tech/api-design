@@ -5,7 +5,6 @@ RecordPaymentRequest:
     - tuition_fee_id
     - amount
     - payment_method
-    - receipt_number
     - payment_date
   properties:
     student_id:
@@ -23,15 +22,11 @@ RecordPaymentRequest:
       nullable: true
       example: 3
     amount:
-      type: number
-      format: double
-      example: 150.00
+      type: integer
+      example: 150000
     payment_method:
       type: string
       example: "CASH"
-    receipt_number:
-      type: string
-      example: "REC-2026-0001"
     payment_date:
       type: string
       format: date
@@ -52,5 +47,43 @@ PaymentListResponse:
       type: array
       items:
         $ref: '../../../common/schemas.yaml#/Payment'
+    meta:
+      $ref: '../../../common/schemas.yaml#/PaginationMeta'
+
+StudentBalanceResponse:
+  type: object
+  properties:
+    student_id:
+      type: integer
+      example: 12
+    amount_due:
+      type: integer
+      example: 500000
+    amount_paid:
+      type: integer
+      example: 350000
+    amount_remaining:
+      type: integer
+      example: 150000
+    status:
+      type: string
+      enum: [PAID, PARTIAL, UNPAID, OVERDUE]
+      example: "PARTIAL"
+
+StudentBalanceItem:
+  type: object
+  properties:
+    student:
+      $ref: '../../../common/schemas.yaml#/Student'
+    balance:
+      $ref: '#/StudentBalanceResponse'
+
+StudentBalancesListResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/StudentBalanceItem'
     meta:
       $ref: '../../../common/schemas.yaml#/PaginationMeta'

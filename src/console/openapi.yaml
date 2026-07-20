@@ -53,6 +53,8 @@ paths:
   # IAM Module
   /auth/login:
     $ref: './iam/auth/paths.yaml#/~1auth~1login'
+  /auth/refresh-token:
+    $ref: './iam/auth/paths.yaml#/~1auth~1refresh-token'
   /auth/validate-token:
     $ref: './iam/auth/paths.yaml#/~1auth~1validate-token'
   /auth/logout:
@@ -137,6 +139,12 @@ paths:
     $ref: './finance/tuition-fees/paths.yaml#/~1finance~1tuition-fees'
   /finance/cash-registers:
     $ref: './finance/cash-registers/paths.yaml#/~1finance~1cash-registers'
+  /finance/students/{student_id}/balance:
+    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{student_id}~1balance'
+  /finance/students/balances:
+    $ref: './finance/payments/paths.yaml#/~1finance~1students~1balances'
+  /finance/payments/{id}/receipt:
+    $ref: './documents/paths.yaml#/~1finance~1payments~1{id}~1receipt'
 
   # Notification Module
   /notifications/sms:
@@ -145,6 +153,18 @@ paths:
     $ref: './notification/sms/paths.yaml#/~1notifications~1sms~1history'
   /notifications/sms/bulk:
     $ref: './notification/sms/paths.yaml#/~1notifications~1sms~1bulk'
+  /notifications/sms-templates:
+    $ref: './notification/sms/paths.yaml#/~1notifications~1sms-templates'
+  /notifications/sms-templates/{id}:
+    $ref: './notification/sms/paths.yaml#/~1notifications~1sms-templates~1{id}'
+
+  # Statistics Module
+  /statistics/dashboard:
+    $ref: './statistics/paths.yaml#/~1statistics~1dashboard'
+
+  # Documents Module
+  /documents/{type}/{student_id}:
+    $ref: './documents/paths.yaml#/~1documents~1{type}~1{student_id}'
 
 components:
   securitySchemes:

@@ -12,6 +12,13 @@
         description: Filter by level ID
         schema:
           type: integer
+      - name: section
+        in: query
+        required: false
+        description: Filter by section (FR or AR)
+        schema:
+          type: string
+          enum: [FR, AR]
     responses:
       '200':
         description: List of classrooms

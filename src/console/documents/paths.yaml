@@ -1,0 +1,61 @@
+/finance/payments/{id}/receipt:
+  get:
+    operationId: getPaymentReceiptPdf
+    tags:
+      - Payments
+    summary: Get payment receipt PDF
+    description: Generates and returns a PDF receipt for a specific payment.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Receipt PDF file
+        content:
+          application/pdf:
+            schema:
+              type: string
+              format: binary
+      '404':
+        description: Payment not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../common/schemas.yaml#/ErrorResponse'
+
+/documents/{type}/{student_id}:
+  get:
+    operationId: getStudentDocumentPdf
+    tags:
+      - Students
+    summary: Generate student academic document PDF
+    description: Generates specific types of documents (e.g. school certificate, attendance certificate, report card).
+    parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum: [school_certificate, attendance_certificate, report_card]
+      - name: student_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Generated PDF document
+        content:
+          application/pdf:
+            schema:
+              type: string
+              format: binary
+      '404':
+        description: Student or document template not found
+        content:
+          application/json:
+            schema:
+              $ref: '../../common/schemas.yaml#/ErrorResponse'

@@ -52,6 +52,12 @@ User:
     is_active:
       type: boolean
       example: true
+    allowed_sections:
+      type: array
+      items:
+        type: string
+        enum: [FR, AR]
+      example: ["FR", "AR"]
 
 Level:
   type: object
@@ -62,6 +68,10 @@ Level:
     name:
       type: string
       example: "6ème"
+    name_ar:
+      type: string
+      nullable: true
+      example: "السادس"
     order:
       type: integer
       example: 1
@@ -99,9 +109,17 @@ Classroom:
     name:
       type: string
       example: "CM1-A"
+    name_ar:
+      type: string
+      nullable: true
+      example: "الرابع - أ"
     capacity:
       type: integer
       example: 30
+    section:
+      type: string
+      enum: [FR, AR]
+      example: "FR"
 
 Absence:
   type: object
@@ -150,7 +168,28 @@ Student:
       example: "2015-05-15"
     gender:
       type: string
+      enum: [MALE, FEMALE]
       example: "FEMALE"
+    father_name:
+      type: string
+      example: "Robert Smith"
+    father_phone:
+      type: string
+      example: "+221771234567"
+    mother_name:
+      type: string
+      example: "Mary Smith"
+    mother_phone:
+      type: string
+      example: "+221777654321"
+    birth_place:
+      type: string
+      example: "Dakar"
+    photo:
+      type: string
+      format: uri
+      nullable: true
+      example: "https://example.com/photos/jane_smith.jpg"
 
 Enrollment:
   type: object
@@ -199,9 +238,8 @@ Payment:
       example: 3
       nullable: true
     amount:
-      type: number
-      format: double
-      example: 150.00
+      type: integer
+      example: 150000
     payment_method:
       type: string
       example: "CASH"
@@ -234,9 +272,8 @@ Expense:
       type: string
       example: "School supplies"
     amount:
-      type: number
-      format: double
-      example: 85.50
+      type: integer
+      example: 85500
     expense_date:
       type: string
       format: date

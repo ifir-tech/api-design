@@ -11,9 +11,8 @@ TuitionFee:
       type: integer
       example: 3
     amount:
-      type: number
-      format: double
-      example: 500.00
+      type: integer
+      example: 500000
     name:
       type: string
       example: "Frais de scolarité CM1"
@@ -33,9 +32,8 @@ CreateTuitionFeeRequest:
       type: integer
       example: 3
     amount:
-      type: number
-      format: double
-      example: 500.00
+      type: integer
+      example: 500000
     name:
       type: string
       example: "Frais de scolarité CM1"
