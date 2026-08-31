@@ -1,19 +1,23 @@
 EnrollStudentRequest:
   type: object
   required:
-    - student_id
-    - academic_year_id
-    - classroom_id
+    - studentMatricule
+    - academicYearId
+    - classroomId
+    - stream
   properties:
-    student_id:
-      type: integer
-      example: 12
-    academic_year_id:
+    studentMatricule:
+      type: string
+      example: "2024-0001"
+    academicYearId:
       type: integer
       example: 2
-    classroom_id:
+    classroomId:
       type: integer
       example: 5
+    stream:
+      type: string
+      example: "Francophone"
 
 EnrollmentListResponse:
   type: object

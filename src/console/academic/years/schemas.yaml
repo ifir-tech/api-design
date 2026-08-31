@@ -10,20 +10,20 @@ CreateAcademicYearRequest:
   type: object
   required:
     - name
-    - start_date
-    - end_date
+    - startDate
+    - endDate
   properties:
     name:
       type: string
       example: "2026-2027"
-    start_date:
+    startDate:
       type: string
-      format: date
-      example: "2026-09-01"
-    end_date:
+      format: date-time
+      example: "2026-09-01T00:00:00Z"
+    endDate:
       type: string
-      format: date
-      example: "2027-06-30"
+      format: date-time
+      example: "2027-06-30T00:00:00Z"
 
 UpdateAcademicYearRequest:
   type: object
@@ -31,11 +31,20 @@ UpdateAcademicYearRequest:
     name:
       type: string
       example: "2026-2027"
-    start_date:
+    startDate:
       type: string
-      format: date
-      example: "2026-09-01"
-    end_date:
+      format: date-time
+      example: "2026-09-01T00:00:00Z"
+    endDate:
       type: string
-      format: date
-      example: "2027-06-30"
+      format: date-time
+      example: "2027-06-30T00:00:00Z"
+
+ToggleAcademicYearRequest:
+  type: object
+  required:
+    - isActive
+  properties:
+    isActive:
+      type: boolean
+      example: true

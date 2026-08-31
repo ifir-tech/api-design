@@ -16,6 +16,9 @@ CreateExpenseCategoryRequest:
     name:
       type: string
       example: "Transport"
+    description:
+      type: string
+      example: "Frais de transport"
 
 ExpenseCategoryListResponse:
   type: object

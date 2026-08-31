@@ -1,13 +1,13 @@
 CreateUserRequest:
   type: object
   required:
-    - role_id
+    - roleId
     - email
     - password
-    - first_name
-    - last_name
+    - firstName
+    - lastName
   properties:
-    role_id:
+    roleId:
       type: integer
       example: 2
     email:
@@ -18,26 +18,26 @@ CreateUserRequest:
       type: string
       format: password
       example: "securePass456"
-    first_name:
+    firstName:
       type: string
       example: "John"
-    last_name:
+    lastName:
       type: string
       example: "Smith"
 
 UpdateUserRequest:
   type: object
   properties:
-    role_id:
+    roleId:
       type: integer
       example: 2
     email:
       type: string
       format: email
-    first_name:
+    firstName:
       type: string
       example: "John"
-    last_name:
+    lastName:
       type: string
       example: "Smith"
 

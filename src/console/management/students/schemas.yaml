@@ -1,47 +1,77 @@
 RegisterStudentRequest:
   type: object
   required:
-    - first_name
-    - last_name
-    - date_of_birth
+    - firstName
+    - lastName
+    - birthDate
     - gender
-    - father_name
-    - father_phone
-    - mother_name
-    - mother_phone
-    - birth_place
+    - fatherName
+    - fatherPhone
+    - motherName
+    - motherPhone
+    - birthPlace
   properties:
-    first_name:
+    firstName:
       type: string
-      example: "Alice"
-    last_name:
+      example: "John"
+    lastName:
       type: string
-      example: "Dupont"
-    date_of_birth:
+      example: "Doe"
+    birthDate:
       type: string
       format: date
-      example: "2015-05-14"
+      example: "2010-05-15"
     gender:
       type: string
       enum: [MALE, FEMALE]
-      example: "FEMALE"
-    father_name:
+      example: "MALE"
+    email:
       type: string
-      example: "Jean Dupont"
-    father_phone:
+      example: "john.doe@example.com"
+    parentEmail:
       type: string
-      example: "+221771234567"
-    mother_name:
+      example: "parent@example.com"
+    parentPhone:
       type: string
-      example: "Marie Dupont"
-    mother_phone:
-      type: string
-      example: "+221777654321"
-    birth_place:
-      type: string
-      example: "Dakar"
+      example: "+213612345678"
     photo:
       type: string
       format: uri
       nullable: true
-      example: "https://example.com/photos/alice.jpg"
+      example: "https://fichiers.alanifiyat.com/photo-test.jpg"
+    fatherName:
+      type: string
+      example: "Doe Senior"
+    fatherProfession:
+      type: string
+      example: "Ingénieur"
+    fatherPhone:
+      type: string
+      example: "+213612345678"
+    motherName:
+      type: string
+      example: "Jane Doe"
+    motherProfession:
+      type: string
+      example: "Enseignante"
+    motherPhone:
+      type: string
+      example: "+213612345679"
+    birthPlace:
+      type: string
+      example: "Alger"
+    address:
+      type: string
+      example: "123 Rue de l'Indépendance, Alger"
+    isNewStudent:
+      type: boolean
+      example: true
+    hasBirthCertificate:
+      type: boolean
+      example: true
+    hasPhotos:
+      type: boolean
+      example: true
+    hasPreviousSchoolCertificate:
+      type: boolean
+      example: false

@@ -4,12 +4,19 @@ TuitionFee:
     id:
       type: integer
       example: 1
-    level_id:
+    classroomId:
       type: integer
       example: 2
-    academic_year_id:
+    academicYearId:
       type: integer
       example: 3
+    streamId:
+      type: integer
+      example: 1
+    dueDate:
+      type: string
+      format: date-time
+      example: "2026-10-01T00:00:00Z"
     amount:
       type: integer
       example: 500000
@@ -20,17 +27,26 @@ TuitionFee:
 CreateTuitionFeeRequest:
   type: object
   required:
-    - level_id
-    - academic_year_id
+    - classroomId
+    - academicYearId
+    - streamId
     - amount
     - name
+    - dueDate
   properties:
-    level_id:
+    classroomId:
       type: integer
       example: 2
-    academic_year_id:
+    academicYearId:
       type: integer
       example: 3
+    streamId:
+      type: integer
+      example: 1
+    dueDate:
+      type: string
+      format: date-time
+      example: "2026-10-01T00:00:00Z"
     amount:
       type: integer
       example: 500000

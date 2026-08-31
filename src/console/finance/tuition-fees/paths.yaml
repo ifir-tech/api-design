@@ -12,6 +12,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/TuitionFeeListResponse'
+/finance/tuition-fees/create:
   post:
     operationId: createTuitionFee
     tags:

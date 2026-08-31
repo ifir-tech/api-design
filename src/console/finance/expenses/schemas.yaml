@@ -1,33 +1,33 @@
 RecordExpenseRequest:
   type: object
   required:
-    - category_id
-    - title
+    - categoryId
+    - description
     - amount
-    - expense_date
+    - date
   properties:
-    category_id:
+    categoryId:
       type: integer
       example: 4
-    cash_register_id:
+    cashRegisterId:
       type: integer
       nullable: true
       example: 1
-    recorded_by_id:
+    recordedById:
       type: integer
       nullable: true
       example: 3
-    title:
+    description:
       type: string
-      example: "Fournitures scolaires"
+      example: "Paid internet bill"
     amount:
       type: number
       format: double
       example: 85.50
-    expense_date:
+    date:
       type: string
-      format: date
-      example: "2026-07-11"
+      format: date-time
+      example: "2026-07-26T00:00:00Z"
 
 ExpenseListResponse:
   type: object

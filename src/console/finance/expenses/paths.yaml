@@ -15,6 +15,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/ExpenseListResponse'
+/finance/expenses/create:
   post:
     operationId: recordExpense
     tags:

@@ -4,15 +4,15 @@ Permission:
     id:
       type: integer
       example: 1
-    role_id:
-      type: integer
-      example: 1
+    action:
+      type: string
+      example: "export"
     resource:
       type: string
-      example: "students"
-    actions:
+      example: "payments"
+    description:
       type: string
-      example: "create,read,update,delete"
+      example: "Can export payments"
 
 PermissionListResponse:
   type: object
@@ -22,15 +22,34 @@ PermissionListResponse:
       items:
         $ref: '#/Permission'
 
+CreatePermissionRequest:
+  type: object
+  required:
+    - action
+    - resource
+  properties:
+    action:
+      type: string
+      example: "export"
+    resource:
+      type: string
+      example: "payments"
+    description:
+      type: string
+      example: "Can export payments"
+
+UpdatePermissionRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      example: "Updated description"
+
 AddRolePermissionRequest:
   type: object
   required:
-    - resource
-    - actions
+    - permissionId
   properties:
-    resource:
-      type: string
-      example: "students"
-    actions:
-      type: string
-      example: "create,read,update"
+    permissionId:
+      type: integer
+      example: 1

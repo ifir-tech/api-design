@@ -16,10 +16,10 @@ LoginRequest:
 LoginResponse:
   type: object
   properties:
-    access_token:
+    accessToken:
       type: string
       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-    refresh_token:
+    refreshToken:
       type: string
       example: "def456..."
     user:
@@ -37,10 +37,10 @@ RefreshTokenRequest:
 RefreshTokenResponse:
   type: object
   properties:
-    access_token:
+    accessToken:
       type: string
       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-    refresh_token:
+    refreshToken:
       type: string
       example: "def456..."
 
@@ -66,14 +66,14 @@ ValidateTokenResponse:
 UpdatePasswordRequest:
   type: object
   required:
-    - current_password
-    - new_password
+    - currentPassword
+    - newPassword
   properties:
-    current_password:
+    currentPassword:
       type: string
       format: password
       example: "oldPass123"
-    new_password:
+    newPassword:
       type: string
       format: password
       example: "newPass456"
@@ -92,12 +92,12 @@ ResetPasswordRequest:
   type: object
   required:
     - token
-    - new_password
+    - newPassword
   properties:
     token:
       type: string
       example: "reset-token-xyz..."
-    new_password:
+    newPassword:
       type: string
       format: password
       example: "newPass456"

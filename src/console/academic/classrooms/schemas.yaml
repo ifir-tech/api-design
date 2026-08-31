@@ -12,13 +12,13 @@ CreateClassroomRequest:
   type: object
   required:
     - name
-    - level_id
+    - levelId
     - capacity
   properties:
     name:
       type: string
       example: "6ème A"
-    level_id:
+    levelId:
       type: integer
       example: 1
     capacity:
@@ -31,7 +31,7 @@ UpdateClassroomRequest:
     name:
       type: string
       example: "6ème A"
-    level_id:
+    levelId:
       type: integer
       example: 1
     capacity:

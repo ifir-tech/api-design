@@ -29,6 +29,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/PaymentListResponse'
+/finance/payments/create:
   post:
     operationId: recordPayment
     tags:
@@ -89,7 +90,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/finance/students/{student_id}/payments:
+/finance/students/{studentId}/payments:
   get:
     operationId: getStudentPayments
     tags:
@@ -97,7 +98,7 @@
     summary: Get student payments
     description: Retrieves all payments for a specific student.
     parameters:
-      - name: student_id
+      - name: studentId
         in: path
         required: true
         schema:
@@ -110,7 +111,7 @@
             schema:
               $ref: './schemas.yaml#/GetStudentPaymentsResponse'
 
-/finance/students/{student_id}/balance:
+/finance/students/{studentId}/balance:
   get:
     operationId: getStudentBalance
     tags:

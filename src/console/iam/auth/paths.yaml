@@ -34,12 +34,12 @@
     summary: Refresh session token
     description: Uses a refresh token to obtain a new access token.
     security: []
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: './schemas.yaml#/RefreshTokenRequest'
+    parameters:
+      - name: x-refresh-token
+        in: header
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: Tokens successfully refreshed
@@ -84,6 +84,12 @@
       - Auth
     summary: Logout user
     description: Invalidates the current session token.
+    parameters:
+      - name: x-refresh-token
+        in: header
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: Successfully logged out
@@ -99,7 +105,7 @@
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
 /auth/update-password:
-  post:
+  put:
     operationId: updatePassword
     tags:
       - Auth
@@ -154,7 +160,7 @@
               $ref: './schemas.yaml#/GenericSuccessResponse'
 
 /auth/reset-password:
-  post:
+  get:
     operationId: resetPassword
     tags:
       - Auth

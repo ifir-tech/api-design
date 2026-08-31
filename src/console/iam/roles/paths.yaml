@@ -12,6 +12,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/RoleListResponse'
+/roles/create:
   post:
     operationId: createRole
     tags:
@@ -57,7 +58,7 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
-  patch:
+  put:
     operationId: updateRole
     tags:
       - Roles

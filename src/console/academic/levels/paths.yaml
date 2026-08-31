@@ -58,7 +58,7 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
-  patch:
+  put:
     operationId: updateLevel
     tags:
       - Levels

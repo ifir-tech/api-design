@@ -21,6 +21,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/UserListResponse'
+/users/create:
   post:
     operationId: createUser
     tags:
@@ -47,7 +48,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/users/{id}:
+/users/{userId}:
   get:
     operationId: getUser
     tags:
@@ -55,7 +56,7 @@
     summary: Get user details
     description: Retrieves a user's details by their ID.
     parameters:
-      - name: id
+      - name: userId
         in: path
         required: true
         schema:
@@ -73,14 +74,14 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
-  patch:
+  put:
     operationId: updateUser
     tags:
       - Users
     summary: Update a user
     description: Updates user information.
     parameters:
-      - name: id
+      - name: userId
         in: path
         required: true
         schema:
@@ -105,15 +106,15 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/users/{id}/toggle:
-  post:
+/users/{userId}/toggle:
+  patch:
     operationId: toggleUserStatus
     tags:
       - Users
     summary: Toggle user active status
     description: Activates or deactivates a user account.
     parameters:
-      - name: id
+      - name: userId
         in: path
         required: true
         schema:

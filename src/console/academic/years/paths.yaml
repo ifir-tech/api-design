@@ -58,7 +58,7 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
-  patch:
+  put:
     operationId: updateAcademicYear
     tags:
       - Academic Years
@@ -106,7 +106,7 @@
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
 /academic/years/{id}/toggle:
-  post:
+  patch:
     operationId: toggleAcademicYear
     tags:
       - Academic Years
@@ -114,6 +114,12 @@
     description: |
       Activates or deactivates an academic year.
       When activated, it becomes the current active year.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/ToggleAcademicYearRequest'
     parameters:
       - name: id
         in: path

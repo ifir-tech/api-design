@@ -19,9 +19,11 @@ CreateRoleRequest:
     name:
       type: string
       example: "TEACHER"
-    description:
-      type: string
-      example: "Teacher with limited access"
+    permissions:
+      type: array
+      items:
+        type: integer
+      example: []
 
 UpdateRoleRequest:
   type: object

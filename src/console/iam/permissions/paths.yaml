@@ -12,8 +12,85 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/PermissionListResponse'
+/permissions/create:
+  post:
+    operationId: createPermission
+    tags:
+      - Permissions
+    summary: Create a permission
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreatePermissionRequest'
+    responses:
+      '201':
+        description: Permission created
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/Permission'
 
-/roles/{role_id}/permissions:
+/permissions/{id}:
+  get:
+    operationId: getPermission
+    tags:
+      - Permissions
+    summary: Get a permission
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Permission details
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/Permission'
+  put:
+    operationId: updatePermission
+    tags:
+      - Permissions
+    summary: Update a permission
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdatePermissionRequest'
+    responses:
+      '200':
+        description: Permission updated
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/Permission'
+  delete:
+    operationId: deletePermission
+    tags:
+      - Permissions
+    summary: Delete a permission
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Permission deleted
+
+/roles/{roleId}/permissions:
   get:
     operationId: listRolePermissions
     tags:
@@ -21,7 +98,7 @@
     summary: List permissions of a role
     description: Returns all permissions assigned to a specific role.
     parameters:
-      - name: role_id
+      - name: roleId
         in: path
         required: true
         schema:
@@ -46,7 +123,7 @@
     summary: Add permission to role
     description: Assigns a permission to a role.
     parameters:
-      - name: role_id
+      - name: roleId
         in: path
         required: true
         schema:
@@ -71,7 +148,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/roles/{role_id}/permissions/{permission_id}:
+/roles/{roleId}/permissions/{permissionId}:
   delete:
     operationId: removeRolePermission
     tags:
@@ -79,12 +156,12 @@
     summary: Remove permission from role
     description: Removes a permission from a role.
     parameters:
-      - name: role_id
+      - name: roleId
         in: path
         required: true
         schema:
           type: integer
-      - name: permission_id
+      - name: permissionId
         in: path
         required: true
         schema:

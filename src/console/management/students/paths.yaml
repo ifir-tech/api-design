@@ -73,18 +73,18 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{id}:
+/management/students/{studentMatricule}:
   get:
     operationId: getStudent
     tags:
       - Students
     summary: Get student details
     parameters:
-      - name: id
+      - name: studentMatricule
         in: path
         required: true
         schema:
-          type: integer
+          type: string
     responses:
       '200':
         description: Student details
@@ -99,19 +99,19 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{id}/toggle:
-  post:
+/management/students/{studentMatricule}/toggle:
+  patch:
     operationId: toggleStudentStatus
     tags:
       - Students
     summary: Toggle student active status
     description: Activates or deactivates a student profile.
     parameters:
-      - name: id
+      - name: studentMatricule
         in: path
         required: true
         schema:
-          type: integer
+          type: string
     responses:
       '200':
         description: Student status toggled

@@ -1,16 +1,15 @@
 RecordPaymentRequest:
   type: object
   required:
-    - student_id
-    - tuition_fee_id
+    - studentId
     - amount
-    - payment_method
-    - payment_date
+    - method
+    - date
   properties:
-    student_id:
+    studentId:
       type: integer
       example: 12
-    tuition_fee_id:
+    tuitionFeeId:
       type: integer
       example: 2
     cash_register_id:
@@ -24,13 +23,13 @@ RecordPaymentRequest:
     amount:
       type: integer
       example: 150000
-    payment_method:
+    method:
       type: string
       example: "CASH"
-    payment_date:
+    date:
       type: string
-      format: date
-      example: "2026-07-11"
+      format: date-time
+      example: "2026-07-26T00:00:00Z"
 
 GetStudentPaymentsResponse:
   type: object
@@ -53,16 +52,16 @@ PaymentListResponse:
 StudentBalanceResponse:
   type: object
   properties:
-    student_id:
+    studentId:
       type: integer
       example: 12
-    amount_due:
+    amountDue:
       type: integer
       example: 500000
-    amount_paid:
+    amountPaid:
       type: integer
       example: 350000
-    amount_remaining:
+    amountRemaining:
       type: integer
       example: 150000
     status:

@@ -11,6 +11,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/ExpenseCategoryListResponse'
+/finance/expense-categories/create:
   post:
     operationId: createExpenseCategory
     tags:
