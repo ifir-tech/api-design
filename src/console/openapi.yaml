@@ -59,6 +59,8 @@ paths:
     $ref: './iam/auth/paths.yaml#/~1auth~1validate-token'
   /auth/logout:
     $ref: './iam/auth/paths.yaml#/~1auth~1logout'
+  /auth/logout-all:
+    $ref: './iam/auth/paths.yaml#/~1auth~1logout-all'
   /auth/update-password:
     $ref: './iam/auth/paths.yaml#/~1auth~1update-password'
   /auth/forgot-password:

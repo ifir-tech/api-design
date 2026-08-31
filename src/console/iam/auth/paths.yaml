@@ -104,6 +104,27 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
+/auth/logout-all:
+  post:
+    operationId: logoutAll
+    tags:
+      - Auth
+    summary: Logout user from all devices
+    description: Invalidates all active session tokens for the current user.
+    responses:
+      '200':
+        description: Successfully logged out from all devices
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/GenericSuccessResponse'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
 /auth/update-password:
   put:
     operationId: updatePassword
