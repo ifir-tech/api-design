@@ -1,14 +1,14 @@
 RecordPaymentRequest:
   type: object
   required:
-    - studentId
+    - matricule
     - amount
     - method
     - date
   properties:
-    studentId:
-      type: integer
-      example: 12
+    matricule:
+      type: string
+      example: "2026-0001"
     tuitionFeeId:
       type: integer
       example: 2
@@ -52,9 +52,9 @@ PaymentListResponse:
 StudentBalanceResponse:
   type: object
   properties:
-    studentId:
-      type: integer
-      example: 12
+    matricule:
+      type: string
+      example: "2026-0001"
     amountDue:
       type: integer
       example: 500000

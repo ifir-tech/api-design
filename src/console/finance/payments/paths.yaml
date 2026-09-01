@@ -90,7 +90,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/finance/students/{studentId}/payments:
+/finance/students/{matricule}/payments:
   get:
     operationId: getStudentPayments
     tags:
@@ -98,7 +98,7 @@
     summary: Get student payments
     description: Retrieves all payments for a specific student.
     parameters:
-      - name: studentId
+      - name: matricule
         in: path
         required: true
         schema:
@@ -111,7 +111,7 @@
             schema:
               $ref: './schemas.yaml#/GetStudentPaymentsResponse'
 
-/finance/students/{studentId}/balance:
+/finance/students/{matricule}/balance:
   get:
     operationId: getStudentBalance
     tags:
