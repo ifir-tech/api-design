@@ -1,6 +1,8 @@
 /roles:
   get:
     operationId: listRoles
+    security:
+      - bearerAuth: []
     tags:
       - Roles
     summary: List roles
@@ -15,6 +17,8 @@
 /roles/create:
   post:
     operationId: createRole
+    security:
+      - bearerAuth: []
     tags:
       - Roles
     summary: Create a role
@@ -36,6 +40,8 @@
 /roles/{id}:
   get:
     operationId: getRole
+    security:
+      - bearerAuth: []
     tags:
       - Roles
     summary: Get a role
@@ -60,6 +66,8 @@
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
   put:
     operationId: updateRole
+    security:
+      - bearerAuth: []
     tags:
       - Roles
     summary: Update a role
@@ -84,6 +92,8 @@
               $ref: './schemas.yaml#/Role'
   delete:
     operationId: deleteRole
+    security:
+      - bearerAuth: []
     tags:
       - Roles
     summary: Delete a role

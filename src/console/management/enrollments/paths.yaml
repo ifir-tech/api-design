@@ -1,6 +1,8 @@
 /management/enrollments:
   get:
     operationId: listEnrollments
+    security:
+      - bearerAuth: []
     tags:
       - Enrollments
     summary: List all enrollments
@@ -43,6 +45,8 @@
 /management/enrollments/create:
   post:
     operationId: enrollStudent
+    security:
+      - bearerAuth: []
     tags:
       - Enrollments
     summary: Enroll a student

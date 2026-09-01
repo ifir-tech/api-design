@@ -1,6 +1,8 @@
 /management/students:
   get:
     operationId: listStudents
+    security:
+      - bearerAuth: []
     tags:
       - Students
     summary: List all students
@@ -49,6 +51,8 @@
                   $ref: '../../../common/schemas.yaml#/PaginationMeta'
   post:
     operationId: registerStudent
+    security:
+      - bearerAuth: []
     tags:
       - Students
     summary: Register a new student
@@ -76,6 +80,8 @@
 /management/students/{studentMatricule}:
   get:
     operationId: getStudent
+    security:
+      - bearerAuth: []
     tags:
       - Students
     summary: Get student details
@@ -102,6 +108,8 @@
 /management/students/{studentMatricule}/toggle:
   patch:
     operationId: toggleStudentStatus
+    security:
+      - bearerAuth: []
     tags:
       - Students
     summary: Toggle student active status
@@ -129,6 +137,8 @@
 /management/students/{student_id}/absences:
   get:
     operationId: getStudentAbsences
+    security:
+      - bearerAuth: []
     tags:
       - Absences
     summary: Get student absences
@@ -155,6 +165,8 @@
 /management/students/{student_id}/absences/{absence_id}:
   delete:
     operationId: deleteAbsence
+    security:
+      - bearerAuth: []
     tags:
       - Absences
     summary: Delete student absence
@@ -183,6 +195,8 @@
 /management/students/{student_id}/payments:
   get:
     operationId: getStudentPaymentsHistory
+    security:
+      - bearerAuth: []
     tags:
       - Payments
     summary: Get student payments history
