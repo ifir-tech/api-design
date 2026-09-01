@@ -32,7 +32,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/Level'
 
-/academic/levels/{id}:
+/academic/levels/{levelId}:
   get:
     operationId: getLevel
     tags:
@@ -40,7 +40,7 @@
     summary: Get a level
     description: Returns details of a specific level by ID.
     parameters:
-      - name: id
+      - name: levelId
         in: path
         required: true
         schema:
@@ -65,7 +65,7 @@
     summary: Update a level
     description: Updates an existing level.
     parameters:
-      - name: id
+      - name: levelId
         in: path
         required: true
         schema:
@@ -90,7 +90,7 @@
     summary: Delete a level
     description: Deletes a level by ID.
     parameters:
-      - name: id
+      - name: levelId
         in: path
         required: true
         schema:

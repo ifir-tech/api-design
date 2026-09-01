@@ -46,7 +46,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/Classroom'
 
-/academic/classrooms/{id}:
+/academic/classrooms/{classroomId}:
   get:
     operationId: getClassroom
     tags:
@@ -54,7 +54,7 @@
     summary: Get a classroom
     description: Returns details of a specific classroom by ID.
     parameters:
-      - name: id
+      - name: classroomId
         in: path
         required: true
         schema:
@@ -79,7 +79,7 @@
     summary: Update a classroom
     description: Updates an existing classroom.
     parameters:
-      - name: id
+      - name: classroomId
         in: path
         required: true
         schema:
@@ -104,7 +104,7 @@
     summary: Delete a classroom
     description: Deletes a classroom by ID.
     parameters:
-      - name: id
+      - name: classroomId
         in: path
         required: true
         schema:
@@ -118,3 +118,20 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
+
+/academic/classrooms/{classroomId}/record-absence:
+  post:
+    operationId: recordClassroomAbsence
+    tags:
+      - Classrooms
+    summary: Record absences for a classroom
+    description: Records absences for all students in a classroom.
+    parameters:
+      - name: classroomId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '201':
+        description: Absences recorded successfully

@@ -69,40 +69,42 @@ paths:
     $ref: './iam/auth/paths.yaml#/~1auth~1reset-password'
   /users:
     $ref: './iam/users/paths.yaml#/~1users'
-  /users/{id}:
-    $ref: './iam/users/paths.yaml#/~1users~1{id}'
-  /users/{id}/toggle:
-    $ref: './iam/users/paths.yaml#/~1users~1{id}~1toggle'
+  /users/{userId}:
+    $ref: './iam/users/paths.yaml#/~1users~1{userId}'
+  /users/{userId}/toggle:
+    $ref: './iam/users/paths.yaml#/~1users~1{userId}~1toggle'
   /roles:
     $ref: './iam/roles/paths.yaml#/~1roles'
-  /roles/{id}:
-    $ref: './iam/roles/paths.yaml#/~1roles~1{id}'
+  /roles/{roleId}:
+    $ref: './iam/roles/paths.yaml#/~1roles~1{roleId}'
   /permissions:
     $ref: './iam/permissions/paths.yaml#/~1permissions'
-  /roles/{role_id}/permissions:
-    $ref: './iam/permissions/paths.yaml#/~1roles~1{role_id}~1permissions'
-  /roles/{role_id}/permissions/{permission_id}:
-    $ref: './iam/permissions/paths.yaml#/~1roles~1{role_id}~1permissions~1{permission_id}'
+  /roles/{roleId}/permissions:
+    $ref: './iam/permissions/paths.yaml#/~1roles~1{roleId}~1permissions'
+  /roles/{roleId}/permissions/{permissionId}:
+    $ref: './iam/permissions/paths.yaml#/~1roles~1{roleId}~1permissions~1{permissionId}'
 
   # Academic Module - Levels
   /academic/levels:
     $ref: './academic/levels/paths.yaml#/~1academic~1levels'
-  /academic/levels/{id}:
-    $ref: './academic/levels/paths.yaml#/~1academic~1levels~1{id}'
+  /academic/levels/{levelId}:
+    $ref: './academic/levels/paths.yaml#/~1academic~1levels~1{levelId}'
 
   # Academic Module - Classrooms
   /academic/classrooms:
     $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms'
-  /academic/classrooms/{id}:
-    $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms~1{id}'
+  /academic/classrooms/{classroomId}:
+    $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms~1{classroomId}'
+  /academic/classrooms/{classroomId}/record-absence:
+    $ref: './academic/classrooms/paths.yaml#/~1academic~1classrooms~1{classroomId}~1record-absence'
 
   # Academic Module - Academic Years
   /academic/years:
     $ref: './academic/years/paths.yaml#/~1academic~1years'
-  /academic/years/{id}:
-    $ref: './academic/years/paths.yaml#/~1academic~1years~1{id}'
-  /academic/years/{id}/toggle:
-    $ref: './academic/years/paths.yaml#/~1academic~1years~1{id}~1toggle'
+  /academic/years/{yearId}:
+    $ref: './academic/years/paths.yaml#/~1academic~1years~1{yearId}'
+  /academic/years/{yearId}/toggle:
+    $ref: './academic/years/paths.yaml#/~1academic~1years~1{yearId}~1toggle'
 
   # Academic Module - Absences
   /academic/absences:
@@ -111,26 +113,26 @@ paths:
   # Management Module
   /management/students:
     $ref: './management/students/paths.yaml#/~1management~1students'
-  /management/students/{id}:
-    $ref: './management/students/paths.yaml#/~1management~1students~1{id}'
-  /management/students/{id}/toggle:
-    $ref: './management/students/paths.yaml#/~1management~1students~1{id}~1toggle'
-  /management/students/{student_id}/absences:
-    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1absences'
-  /management/students/{student_id}/absences/{absence_id}:
-    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1absences~1{absence_id}'
+  /management/students/{matricule}:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{matricule}'
+  /management/students/{matricule}/toggle:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{matricule}~1toggle'
+  /management/students/{matricule}/absences:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{matricule}~1absences'
+  /management/students/{matricule}/absences/{absenceId}:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{matricule}~1absences~1{absenceId}'
   /management/enrollments:
     $ref: './management/enrollments/paths.yaml#/~1management~1enrollments'
-  /management/students/{student_id}/payments:
-    $ref: './management/students/paths.yaml#/~1management~1students~1{student_id}~1payments'
+  /management/students/{matricule}/payments:
+    $ref: './management/students/paths.yaml#/~1management~1students~1{matricule}~1payments'
 
   # Finance Module
   /finance/payments:
     $ref: './finance/payments/paths.yaml#/~1finance~1payments'
   /finance/payments/{id}:
     $ref: './finance/payments/paths.yaml#/~1finance~1payments~1{id}'
-  /finance/students/{student_id}/payments:
-    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{student_id}~1payments'
+  /finance/students/{studentId}/payments:
+    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{studentId}~1payments'
   /finance/expenses:
     $ref: './finance/expenses/paths.yaml#/~1finance~1expenses'
   /finance/expenses/{id}:
@@ -141,8 +143,8 @@ paths:
     $ref: './finance/tuition-fees/paths.yaml#/~1finance~1tuition-fees'
   /finance/cash-registers:
     $ref: './finance/cash-registers/paths.yaml#/~1finance~1cash-registers'
-  /finance/students/{student_id}/balance:
-    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{student_id}~1balance'
+  /finance/students/{studentId}/balance:
+    $ref: './finance/payments/paths.yaml#/~1finance~1students~1{studentId}~1balance'
   /finance/students/balances:
     $ref: './finance/payments/paths.yaml#/~1finance~1students~1balances'
   /finance/payments/{id}/receipt:
@@ -167,6 +169,10 @@ paths:
   # Documents Module
   /documents/{type}/{student_id}:
     $ref: './documents/paths.yaml#/~1documents~1{type}~1{student_id}'
+
+  # Storage Module
+  /storage/upload-url:
+    $ref: './storage/paths.yaml#/~1storage~1upload-url'
 
 components:
   securitySchemes:

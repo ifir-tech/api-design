@@ -32,7 +32,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/AcademicYear'
 
-/academic/years/{id}:
+/academic/years/{yearId}:
   get:
     operationId: getAcademicYear
     tags:
@@ -40,7 +40,7 @@
     summary: Get an academic year
     description: Returns details of a specific academic year by ID.
     parameters:
-      - name: id
+      - name: yearId
         in: path
         required: true
         schema:
@@ -65,7 +65,7 @@
     summary: Update an academic year
     description: Updates an existing academic year.
     parameters:
-      - name: id
+      - name: yearId
         in: path
         required: true
         schema:
@@ -90,7 +90,7 @@
     summary: Delete an academic year
     description: Deletes an academic year by ID.
     parameters:
-      - name: id
+      - name: yearId
         in: path
         required: true
         schema:
@@ -105,7 +105,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/academic/years/{id}/toggle:
+/academic/years/{yearId}/toggle:
   patch:
     operationId: toggleAcademicYear
     tags:
@@ -121,7 +121,7 @@
           schema:
             $ref: './schemas.yaml#/ToggleAcademicYearRequest'
     parameters:
-      - name: id
+      - name: yearId
         in: path
         required: true
         schema:

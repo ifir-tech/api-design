@@ -77,7 +77,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{studentMatricule}:
+/management/students/{matricule}:
   get:
     operationId: getStudent
     security:
@@ -86,7 +86,7 @@
       - Students
     summary: Get student details
     parameters:
-      - name: studentMatricule
+      - name: matricule
         in: path
         required: true
         schema:
@@ -105,7 +105,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{studentMatricule}/toggle:
+/management/students/{matricule}/toggle:
   patch:
     operationId: toggleStudentStatus
     security:
@@ -115,7 +115,7 @@
     summary: Toggle student active status
     description: Activates or deactivates a student profile.
     parameters:
-      - name: studentMatricule
+      - name: matricule
         in: path
         required: true
         schema:
@@ -134,7 +134,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{student_id}/absences:
+/management/students/{matricule}/absences:
   get:
     operationId: getStudentAbsences
     security:
@@ -144,7 +144,7 @@
     summary: Get student absences
     description: Retrieves all recorded absences for a student.
     parameters:
-      - name: student_id
+      - name: matricule
         in: path
         required: true
         schema:
@@ -162,7 +162,7 @@
                   items:
                     $ref: '../../../common/schemas.yaml#/Absence'
 
-/management/students/{student_id}/absences/{absence_id}:
+/management/students/{matricule}/absences/{absenceId}:
   delete:
     operationId: deleteAbsence
     security:
@@ -172,12 +172,12 @@
     summary: Delete student absence
     description: Removes an absence record.
     parameters:
-      - name: student_id
+      - name: matricule
         in: path
         required: true
         schema:
           type: integer
-      - name: absence_id
+      - name: absenceId
         in: path
         required: true
         schema:
@@ -192,7 +192,7 @@
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
 
-/management/students/{student_id}/payments:
+/management/students/{matricule}/payments:
   get:
     operationId: getStudentPaymentsHistory
     security:
@@ -202,7 +202,7 @@
     summary: Get student payments history
     description: Retrieves payment history for a student from Management context.
     parameters:
-      - name: student_id
+      - name: matricule
         in: path
         required: true
         schema:

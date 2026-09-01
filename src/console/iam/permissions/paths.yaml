@@ -32,14 +32,14 @@
             schema:
               $ref: './schemas.yaml#/Permission'
 
-/permissions/{id}:
+/permissions/{permissionId}:
   get:
     operationId: getPermission
     tags:
       - Permissions
     summary: Get a permission
     parameters:
-      - name: id
+      - name: permissionId
         in: path
         required: true
         schema:
@@ -57,7 +57,7 @@
       - Permissions
     summary: Update a permission
     parameters:
-      - name: id
+      - name: permissionId
         in: path
         required: true
         schema:
@@ -81,7 +81,7 @@
       - Permissions
     summary: Delete a permission
     parameters:
-      - name: id
+      - name: permissionId
         in: path
         required: true
         schema:
@@ -116,6 +116,7 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
+/roles/{roleId}/permissions/{permissionId}:
   post:
     operationId: addRolePermission
     tags:
@@ -128,12 +129,11 @@
         required: true
         schema:
           type: integer
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: './schemas.yaml#/AddRolePermissionRequest'
+      - name: permissionId
+        in: path
+        required: true
+        schema:
+          type: integer
     responses:
       '201':
         description: Permission added to role
@@ -147,8 +147,6 @@
           application/json:
             schema:
               $ref: '../../../common/schemas.yaml#/ErrorResponse'
-
-/roles/{roleId}/permissions/{permissionId}:
   delete:
     operationId: removeRolePermission
     tags:

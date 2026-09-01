@@ -1,0 +1,45 @@
+/storage/upload-url:
+  get:
+    operationId: getUploadUrl
+    tags:
+      - Storage
+    summary: Obtenir une URL d'upload signée
+    description: Génère une URL signée (Cloudflare R2, S3, etc.) pour permettre au client de télécharger directement un fichier.
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: fileName
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Le nom du fichier à uploader
+      - name: contentType
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Le type MIME du fichier (ex. image/png)
+    responses:
+      '200':
+        description: URL générée avec succès
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uploadUrl:
+                  type: string
+                  description: L'URL sur laquelle le frontend doit faire le PUT
+                fileKey:
+                  type: string
+                  description: La clé unique du fichier
+                publicUrl:
+                  type: string
+                  description: L'URL publique pour lire le fichier après l'upload
+      '500':
+        description: Erreur serveur
+        content:
+          application/json:
+            schema:
+              $ref: '../../common/schemas.yaml#/ErrorResponse'
