@@ -185,6 +185,12 @@
     responses:
       '204':
         description: Absence deleted
+      '400':
+        description: Bad Request (Absence does not belong to student)
+        content:
+          application/json:
+            schema:
+              $ref: '../../../common/schemas.yaml#/ErrorResponse'
       '404':
         description: Not found
         content:

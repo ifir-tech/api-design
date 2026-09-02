@@ -27,7 +27,7 @@
         required: false
         description: Filter by student ID
         schema:
-          type: integer
+          type: string
       - name: section
         in: query
         required: false
